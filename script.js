@@ -1,6 +1,6 @@
 $(document).ready(function() {
 
-	//what does this do?
+	//changes the values higher than 10 to be the face cards
 	function convert_value_to_string(value) {
 		if (value > 10) {
 			switch (value) {
@@ -18,7 +18,7 @@ $(document).ready(function() {
 		return value.toString();
 	}
 
-	//what does this do?
+	//assigns 1-13 of each suit
 	var deck = [];
 	var suits = ['hearts', 'diamonds', 'spades', 'clubs'];
 	for (var i = 0; i<suits.length; i++) {
@@ -29,26 +29,95 @@ $(document).ready(function() {
 	}
 	
 	//shuffle the deck
+	var newDeck = function shuffle(deck) {
+	  var m = deck.length, t, i;
+
+	  // While there remain elements to shuffle…
+	  while (m) {
+
+	    // Pick a remaining element…
+	    i = Math.floor(Math.random() * m--);
+
+	    // And swap it with the current element.
+	    t = deck[m];
+	    deck[m] = deck[i];
+	    deck[i] = t;
+	  }
+
+	  return deck;
+	}
+
+
+
 	
 	
 	var cards_player_1 = [];
 	var cards_player_2 = [];
-	//divide out the cards into the two arrays
+	//divide out the cards into the two arrays odds go to player one evens go to player 2
 	
+	for (var i=0;i<deck.length;i++){
+	    if (i%2==0) {
+	        cards_player_1.push(deck[i]);
+	    }
+	    else {
+	        cards_player_2.push(deck[i]);
+	    }
+	}
+
+	console.log(cards_player_2);
+	}
+
+
+
+
+
 	
 	//create a function (algorithm) called "war" that takes two cards as parameters, compares them and returns a winner. A tie should return false.
-	function war() {
+	var card1 = cards_player_1.shift
+	var card2 = cards_player_2.shift
+
+
+	function war(card1, card2) {
+	
+		if (card1.number > card2.number) {
+			return card1;
+
+		}else if (card2.number > card1.number) {
+			return cards2
+
+		}else{
+			return false;
+		}
 	}
 	
 	
 	//create a play function
 		//compare the cards
 		//give the winner both cards (at end of deck)
+	var winner = war(card1, card2)
+
 	function play() {
-		
+
+
+		if (winner === card2) {
+			cards_player_2.push(card1, card2);
+		} else if (winner === card1) {
+			cards_player_1.push(card1, card2);
+		}else {
+			cards_player_1.push(card1);
+			cards_player_2.push(card2);
+		}
+		}
+
+	
 		//this function (defined below) will continue to the next turn
 		advance();
-	}
+
+		
+
+		//then push the two cards to the winner
+
+		war(card1, card2)
 	
 	function advance() {
 		//take the top two cards and display them
