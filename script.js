@@ -65,7 +65,7 @@ $(document).ready(function() {
 	}
 
 	console.log(cards_player_2);
-	}
+	
 
 
 
@@ -80,10 +80,10 @@ $(document).ready(function() {
 	function war(card1, card2) {
 	
 		if (card1.number > card2.number) {
-			return card1;
+			alert("player1");
 
 		}else if (card2.number > card1.number) {
-			return cards2
+			alert("player2");
 
 		}else{
 			return false;
@@ -94,14 +94,17 @@ $(document).ready(function() {
 	//create a play function
 		//compare the cards
 		//give the winner both cards (at end of deck)
-	var winner = war(card1, card2)
 
 	function play() {
 
 
-		if (winner === card2) {
+		var winner = war(card1, card2 )
+
+
+
+		if (winner === "player2") {
 			cards_player_2.push(card1, card2);
-		} else if (winner === card1) {
+		} else if (winner === "player1") {
 			cards_player_1.push(card1, card2);
 		}else {
 			cards_player_1.push(card1);
@@ -113,11 +116,6 @@ $(document).ready(function() {
 		//this function (defined below) will continue to the next turn
 		advance();
 
-		
-
-		//then push the two cards to the winner
-
-		war(card1, card2)
 	
 	function advance() {
 		//take the top two cards and display them
